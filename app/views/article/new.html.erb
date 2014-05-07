@@ -55,6 +55,7 @@
 </div>
 
 <script type="text/javascript">
+  var deleteHTML = '<div class="delete-section"><a href="#">Delete this section</a></div>'
   $(document).ready(function() {
     // http://stackoverflow.com/questions/7203304/warning-cant-verify-csrf-token-authenticity-rails
     $.ajaxSetup({
@@ -62,12 +63,21 @@
         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
       }
     });
-
+    
+    
+    function delete_section(e) {
+      e.preventDefault();
+        var d = confirm('Are you sure you want to delete this section?');
+        if(d) {
+          $(this).parents('.section').remove();
+        }
+    }
     $('#add-section').click(
       function(e) {
         e.preventDefault();
         var sections = $('.section');
         var new_section = $(sections[0]).clone(false);
+        new_section.append($(deleteHTML).click(delete_section));
         $(sections[sections.length-1]).after(new_section);
     });
     
