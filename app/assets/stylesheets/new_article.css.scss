@@ -19,6 +19,11 @@
   outline: none;
 }
 
+.upper .entry textarea {
+  min-height: 100px;
+  width: 600px;
+}
+
 .section {
 
 }
@@ -35,7 +40,8 @@
   text-transform: uppercase;
 }
 
-.section .entry textarea {
+.section .entry textarea,
+.upper .entry textarea {
   resize: none;
   width: 100%;
   min-height: 200px;

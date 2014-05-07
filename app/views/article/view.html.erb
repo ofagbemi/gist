@@ -21,10 +21,10 @@
   
     <div class="content">
       <div class="hero">
-        <%= image_tag('articles/min.jpg') %>
+        <%= image_tag(@article.images[0].url, :alt => @article.images[0].caption) %>
         <div class="caption">
-        <p>Carl Andre is one of America’s greatest living sculptors. He has been mostly absent from the American art scene for decades, but recently returned to oversee the installation of a new retrospective.</p>
-        <p class="attribution">Credit Fred R. Conrad/The New York Times</p>
+        <p><%= @article.images[0].caption %></p>
+        <p class="attribution"><%= @article.images[0].attribution %></p>
         </div>
       </div>
   

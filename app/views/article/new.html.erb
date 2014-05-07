@@ -14,6 +14,18 @@
     <div class="label">Author</div>
     <input type="text" name="author">
   </div>
+  <div class="entry">
+    <div class="label">Image URL</div>
+    <input type="text" name="main_image_url">
+  </div>
+  <div class="entry">
+    <div class="label">Caption</div>
+    <textarea class="caption" name="main_caption"></textarea>
+  </div>
+  <div class="entry">
+    <div class="label">Attribution</div>
+    <textarea class="attribution" name="main_attribution"></textarea>
+  </div>
 </div>
 <div class="section">
   <% 3.times do |current|%>
@@ -94,12 +106,15 @@
         title: $('input[name="title"]').val(),
         subtitle: $('input[name="subtitle"]').val(),
         author: $('input[name="author"]').val(),
+        main_image_url: $('input[name="main_image_url"]').val(),
+        main_caption: $('textarea[name="main_caption"]').val(),
+        main_attribution: $('textarea[name="main_attribution"]').val(),
         sections: sections
       };
       
       for(var key in data) {
         if(!data[key] || $.trim(data[key]) == '') {
-          alert('You left the ' + key + ' field blank!');
+          alert('You left the ' + key.replace('_', ' ') + ' field blank!');
           return;
         }
       }

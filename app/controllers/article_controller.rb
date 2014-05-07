@@ -10,9 +10,17 @@ class ArticleController < ApplicationController
   #
   # Returns nothing
   def create
+    main_image = Image.new(:url => params[:main_image_url],
+                           :alt => params[:main_caption],
+                           :caption => params[:main_caption],
+                           :attribution => params[:main_attribution])
+    
+    main_image.save
+    
     article = Article.new(:title => params[:title],
                           :subtitle => params[:subtitle],
                           :author => params[:author])
+    article.images << main_image
     article.save
     
     sections = params[:sections]
