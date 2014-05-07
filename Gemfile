@@ -9,6 +9,11 @@ gem 'rails', '4.0.0'
 # Use PostgreSQL
 gem 'pg'
 
+# Heroku assets gem
+group :production do
+  gem 'rails_12factor'
+end
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
