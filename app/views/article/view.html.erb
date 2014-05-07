@@ -51,8 +51,14 @@
               </div>
             </div>
             <div class="adjust">
-              <a section="<%= section.id %>" class="icon up-arrow red" href="#"></a>
-              <a section="<%= section.id %>" class="icon down-arrow green" href="#"></a>
+              <div>
+                <a class="shrink" href="#">Shrink</a>
+                <a section="<%= section.id %>" class="icon up-arrow red" href="#"></a>
+              </div>
+              <div>
+                <a section="<%= section.id %>" class="icon down-arrow green" href="#"></a>
+                <a class="expand" href="#">Expand</a>
+              </div>
             </div>
             <div class="clear"></div>
           </div>
@@ -71,6 +77,10 @@
       /* set current to preference */
       var preference = 'short';
       
+      $('article .section').css({
+        'min-height': ($('article .section .adjust').height() + 8) + 'px'
+      });
+      
       $('.section .length').hide();
       $('.section .' + preference).addClass('current').show();
       
@@ -83,6 +93,17 @@
         break;
       }
       
+      $('.shrink').click(
+        function(e) {
+          e.preventDefault();
+          $(this).parent().find('.up-arrow').trigger('click');
+      });
+      
+      $('.expand').click(
+        function(e) {
+          e.preventDefault();
+          $(this).parent().find('.down-arrow').trigger('click');
+      });
       
       $('.section .adjust .up-arrow').click(
         function(e) {

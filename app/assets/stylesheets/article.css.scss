@@ -89,6 +89,7 @@ article .words p {
 article .section {
   border-bottom: dotted 1px rgba(0,0,0,0.08);
   margin-bottom: 11px;
+  position: relative;
 }
 
 article .section .main {
@@ -99,12 +100,23 @@ article .section .main {
 
 article .section .adjust {
   width: 50px;
-  float: right;
+  /*float: right;*/
   min-height: 80px;
+  position: absolute;
+  right: 0px;
+  text-align: center;
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: 200;
+  color: #444;
+  font-size: smaller;
+}
+
+article .section .adjust a:hover {
+  text-decoration: none;
 }
 
 article .section .adjust .icon {
-  margin: 4px 0 0 24px;
+  margin: 4px 0px 0px 0px;
   transition: opacity 0.4s;
 }
 
@@ -114,7 +126,7 @@ article .section .adjust .icon.inactive {
 }
 
 article .section .adjust .icon.down-arrow.inactive {
-  opacity: 0.1;
+  opacity: 0.16;
 }
 
 article .side {
