@@ -1,0 +1,108 @@
+<div class="wrap">
+  <div class="ad rect"></div>
+  <article>
+    <div class="category">Art & Design</div>
+    <div class="header">
+      <h1><%= @article.title %></h1>
+      <h3><%= @article.subtitle %></h3>
+    </div>
+    <div class="meta">
+      By <span class="author"><%= @article.author %></span>
+    </div>
+  
+    <div class="side">
+      <div style="margin-bottom: 94px;
+             background-image:
+               url('<%= image_url("ads/square/" + rand(1).to_s + ".png"); %>');"
+            class="ad square"></div>
+      <div class="ad up rect"></div>
+    </div>
+  
+  
+    <div class="content">
+      <div class="hero">
+        <%= image_tag('articles/min.jpg') %>
+        <div class="caption">
+        <p>Carl Andre is one of America’s greatest living sculptors. He has been mostly absent from the American art scene for decades, but recently returned to oversee the installation of a new retrospective.</p>
+        <p class="attribution">Credit Fred R. Conrad/The New York Times</p>
+        </div>
+      </div>
+  
+      <%= render(:partial => "shared/social") %>
+
+      <div class="words">
+        <% @article.sections.each do |section| %>
+          <div class="section <%= section.id %>">
+            <div class="main">
+              <div class="length short">
+                <% section.short.lines.each do |line| %>
+                <p><%= line %></p>
+                <% end %>
+              </div>
+              <div class="length medium">
+                <% section.medium.lines.each do |line| %>
+                <p><%= line %></p>
+                <% end %>
+              </div>
+              <div class="length long">
+                <% section.long.lines.each do |line| %>
+                <p><%= line %></p>
+                <% end %>
+              </div>
+            </div>
+            <div class="adjust">
+              <a section="<%= section.id %>" class="icon up-arrow" href="#"></a>
+              <a section="<%= section.id %>" class="icon down-arrow" href="#"></a>
+            </div>
+            <div class="clear"></div>
+          </div>
+        <% end %>
+        <div class="clear"></div>
+      </div>
+      
+      <div class="clear"></div>
+    </div>
+  </article>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(
+    function() {
+      /* set current to preference */
+      var preference = 'long';
+      
+      $('.section .length').hide();
+      $('.section .' + preference).addClass('current').show();
+      
+      
+      $('.section .adjust .up-arrow').click(
+        function(e) {
+          e.preventDefault();
+          var section_id = $(this).attr('section');
+          var section = $('.section.' + section_id)
+          var current = section.find('.current');
+          if(current.hasClass('long')) {
+            section.find('.medium').addClass('current').show();
+          } else if(current.hasClass('medium')) {
+            section.find('.short').addClass('current').show();
+          } else return;
+          
+          current.removeClass('current').hide();
+      });
+      
+      $('.section .adjust .down-arrow').click(
+        function(e) {
+          e.preventDefault();
+          var section_id = $(this).attr('section');
+          var section = $('.section.' + section_id)
+          var current = section.find('.current');
+          if(current.hasClass('short')) {
+            section.find('.medium').addClass('current').show();
+          } else if(current.hasClass('medium')) {
+            section.find('.long').addClass('current').show();
+          } else return;
+          
+          current.removeClass('current').hide();
+      });
+  });
+</script>

@@ -1,0 +1,95 @@
+<div class="upper">
+  <div class="entry">
+    <div class="label">Title</div>
+    <input type="text" name="title">
+  </div>
+  <div class="entry">
+    <div class="label">Subtitle</div>
+    <input type="text" name="subtitle">
+  </div>
+  <div class="entry">
+    <div class="label">Author</div>
+    <input type="text" name="author">
+  </div>
+</div>
+<div class="section">
+  <% 3.times do |current|%>
+  <div class="entry">
+    <h2>
+    <% case current
+       when 0 %>
+       short
+    <% when 1 %>
+       medium
+    <% when 2 %>
+       long
+    <% end %>
+    </h2>
+    <textarea size="<%= current %>"></textarea>
+  </div>
+  <% end %>
+  <div class="clear"></div>
+</div>
+
+
+<div class="button">
+  <a id="add-section" href="#">Add section</a>
+</div>
+<div class="button">
+  <a id="submit-article" href="#">Submit</a>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    // http://stackoverflow.com/questions/7203304/warning-cant-verify-csrf-token-authenticity-rails
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+
+    $('#add-section').click(
+      function(e) {
+        e.preventDefault();
+        var sections = $('.section');
+        var new_section = $(sections[0]).clone(false);
+        $(sections[sections.length-1]).after(new_section);
+    });
+    
+    /* ------------------
+     * Collect the sections into a single array
+     * to post to the server */
+    $('#submit-article').click(
+      function(e) {
+        e.preventDefault();
+        var sections = [];
+        $('.section').each(
+          function(index) {
+            var section = {
+              'order': index,
+              'short': $(this).find('textarea[size="0"]').val(),
+              'medium': $(this).find('textarea[size="1"]').val(),
+              'long': $(this).find('textarea[size="2"]').val()
+            }
+            sections.push(section);
+        });
+        
+      var data = {
+        title: $('input[name="title"]').val(),
+        subtitle: $('input[name="subtitle"]').val(),
+        author: $('input[name="author"]').val(),
+        sections: sections
+      };
+      
+      $.ajax({
+        url: '/article/new/create',
+        type: 'POST',
+        data: data,
+        success: function(response) {
+          console.log(response);
+          window.location.replace(response.redirect);
+        }
+      });
+    });
+  });
+</script>
