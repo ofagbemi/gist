@@ -103,8 +103,18 @@ article .section .adjust {
   min-height: 80px;
 }
 
-article .section .adjust .icon{
+article .section .adjust .icon {
   margin: 4px 0 0 24px;
+  transition: opacity 0.4s;
+}
+
+article .section .adjust .icon.inactive {
+  opacity: 0.4;
+  cursor: default;
+}
+
+article .section .adjust .icon.down-arrow.inactive {
+  opacity: 0.1;
 }
 
 article .side {

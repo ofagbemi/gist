@@ -51,8 +51,8 @@
               </div>
             </div>
             <div class="adjust">
-              <a section="<%= section.id %>" class="icon up-arrow" href="#"></a>
-              <a section="<%= section.id %>" class="icon down-arrow" href="#"></a>
+              <a section="<%= section.id %>" class="icon up-arrow red" href="#"></a>
+              <a section="<%= section.id %>" class="icon down-arrow green" href="#"></a>
             </div>
             <div class="clear"></div>
           </div>
@@ -74,6 +74,15 @@
       $('.section .length').hide();
       $('.section .' + preference).addClass('current').show();
       
+      switch(preference) {
+      case 'short':
+        $('.section .adjust .up-arrow').addClass('inactive');
+        break;
+      case 'long':
+        $('.section .adjust .down-arrow').addClass('inactive');
+        break;
+      }
+      
       
       $('.section .adjust .up-arrow').click(
         function(e) {
@@ -84,9 +93,11 @@
           if(current.hasClass('long')) {
             section.find('.medium').addClass('current').show();
           } else if(current.hasClass('medium')) {
+            $(this).addClass('inactive');
             section.find('.short').addClass('current').show();
           } else return;
           
+          $('.section .adjust .down-arrow').removeClass('inactive');
           current.removeClass('current').hide();
       });
       
@@ -99,9 +110,11 @@
           if(current.hasClass('short')) {
             section.find('.medium').addClass('current').show();
           } else if(current.hasClass('medium')) {
+            $(this).addClass('inactive');
             section.find('.long').addClass('current').show();
           } else return;
           
+          $('.section .adjust .up-arrow').removeClass('inactive');
           current.removeClass('current').hide();
       });
   });
