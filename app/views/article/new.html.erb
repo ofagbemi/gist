@@ -76,8 +76,10 @@
               'long': $(this).find('textarea[size="2"]').val()
             }
             for(var key in section) {
+              if(key == 'order') continue;
               if(!section[key] || $.trim(section[key]) == '') {
                 alert('You left a section blank!');
+                
                 sections_good = false;
                 return;
               }
