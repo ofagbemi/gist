@@ -1,3 +1,6 @@
+<div class="header">
+  <div class="title">Add an article</div>
+</div>
 <div class="upper">
   <div class="entry">
     <div class="label">Title</div>
@@ -63,6 +66,7 @@
       function(e) {
         e.preventDefault();
         var sections = [];
+        var sections_good = true;
         $('.section').each(
           function(index) {
             var section = {
@@ -71,8 +75,18 @@
               'medium': $(this).find('textarea[size="1"]').val(),
               'long': $(this).find('textarea[size="2"]').val()
             }
+            for(var key in section) {
+              if(!section[key] || $.trim(section[key]) == '') {
+                alert('You left a section blank!');
+                sections_good = false;
+                return;
+              }
+            }
             sections.push(section);
-        });
+      });
+      
+      // if any sections were invalid
+      if(!sections_good) return;
         
       var data = {
         title: $('input[name="title"]').val(),
@@ -81,6 +95,13 @@
         sections: sections
       };
       
+      for(var key in data) {
+        if(!data[key] || $.trim(data[key]) == '') {
+          alert('You left the ' + key + ' field blank!');
+          return;
+        }
+      }
+      
       $.ajax({
         url: '/article/new/create',
         type: 'POST',
@@ -88,6 +109,13 @@
         success: function(response) {
           console.log(response);
           window.location.replace(response.redirect);
+        },
+        error: function(request, status, error) {
+          console.log('Error sending post');
+          console.log(request);
+          console.log(status);
+          console.log(error);
+          alert('Couldn\'t post the article for some reason. Check the console for more info');
         }
       });
     });
