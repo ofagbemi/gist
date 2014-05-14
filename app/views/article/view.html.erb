@@ -35,19 +35,13 @@
           <div class="section <%= section.id %>">
             <div class="main">
               <div class="length short">
-                <% section.short.lines.each do |line| %>
-                <p><%= line %></p>
-                <% end %>
+                <%= section.short.html_safe %>
               </div>
               <div class="length medium">
-                <% section.medium.lines.each do |line| %>
-                <p><%= line %></p>
-                <% end %>
+                <%= section.medium.html_safe %>
               </div>
               <div class="length long">
-                <% section.long.lines.each do |line| %>
-                <p><%= line %></p>
-                <% end %>
+                <%= section.long.html_safe %>
               </div>
             </div>
             <div class="adjust">

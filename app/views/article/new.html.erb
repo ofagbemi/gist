@@ -40,7 +40,7 @@
        long
     <% end %>
     </h2>
-    <textarea size="<%= current %>"></textarea>
+    <textarea class="entry-textarea" size="<%= current %>"></textarea>
   </div>
   <% end %>
   <div class="clear"></div>
@@ -54,9 +54,22 @@
   <a id="submit-article" href="#">Submit</a>
 </div>
 
+<%= javascript_include_tag "ckeditor/ckeditor.js" %>
+
 <script type="text/javascript">
   var deleteHTML = '<div class="delete-section"><a href="#">Delete this section</a></div>'
   $(document).ready(function() {
+  
+    section_html = $($('.section')[0]).clone(false);
+  
+  
+    CKEDITOR.config.width = window.innerWidth/3.6 + 'px';
+    // replace textareas with CKEditors
+    var t = $('.entry-textarea');
+    for(var i=0;i<t.length;i++) {
+      CKEDITOR.replace(t[i]);
+    }
+  
     // http://stackoverflow.com/questions/7203304/warning-cant-verify-csrf-token-authenticity-rails
     $.ajaxSetup({
       headers: {
@@ -76,9 +89,16 @@
       function(e) {
         e.preventDefault();
         var sections = $('.section');
-        var new_section = $(sections[0]).clone(false);
+        var new_section = section_html.clone();
         new_section.append($(deleteHTML).click(delete_section));
         $(sections[sections.length-1]).after(new_section);
+        
+        // replace each new text area with a CKEditor
+        var textareas = new_section.find('.entry-textarea');
+        console.log(textareas);
+        for(var i=0;i<textareas.length;i++) {
+          CKEDITOR.replace(textareas[i]);
+        }
     });
     
     /* ------------------
@@ -87,16 +107,22 @@
     $('#submit-article').click(
       function(e) {
         e.preventDefault();
+        
+        var editor = 1;
+        
         var sections = [];
         var sections_good = true;
         $('.section').each(
           function(index) {
             var section = {
               'order': index,
-              'short': $(this).find('textarea[size="0"]').val(),
-              'medium': $(this).find('textarea[size="1"]').val(),
-              'long': $(this).find('textarea[size="2"]').val()
+              'short': CKEDITOR.instances['editor' + editor].getData(), // $(this).find('textarea[size="0"]').val(),
+              'medium': CKEDITOR.instances['editor' + (editor + 1)].getData(), // $(this).find('textarea[size="1"]').val(),
+              'long': CKEDITOR.instances['editor' + (editor + 2)].getData(), // $(this).find('textarea[size="2"]').val()
             }
+            
+            editor += 3;
+            
             for(var key in section) {
               if(key == 'order') continue;
               if(!section[key] || $.trim(section[key]) == '') {
