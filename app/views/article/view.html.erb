@@ -30,9 +30,9 @@
   
       <%= render(:partial => "shared/social") %>
 
-      <div class="words">
+      <div class="words" length="<%= params[:standard]? 'long' : params[:l] %>">
         <% @article.sections.each do |section| %>
-          <div class="section <%= section.id %>">
+          <div class="section <%= section.id %> <% if params[:standard] %> <%= 'standard' %><% end %>">
             <div class="main">
               <div class="length short">
                 <%= section.short.html_safe %>
@@ -44,6 +44,7 @@
                 <%= section.long.html_safe %>
               </div>
             </div>
+            <% unless params[:standard] %>
             <div class="adjust">
               <div>
                 <a class="shrink" href="#">Shrink</a>
@@ -54,6 +55,7 @@
                 <a class="expand" href="#">Expand</a>
               </div>
             </div>
+            <% end %>
             <div class="clear"></div>
           </div>
         <% end %>
@@ -68,8 +70,11 @@
 <script type="text/javascript">
   $(document).ready(
     function() {
-      /* set current to preference */
-      var preference = 'short';
+      /* set current length to preference */
+      var preference = $('.words').attr('length');
+      preference = (preference == '') ? 'short' : preference;
+      
+      console.log('Preference is ' + preference + '.');
       
       $('article .section').css({
         'min-height': ($('article .section .adjust').height() + 8) + 'px'

@@ -92,6 +92,15 @@ article .section {
   position: relative;
 }
 
+article .section.standard {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+article .section.standard .main {
+  min-height: 0px;
+}
+
 article .section .main {
   width: 500px;
   float: left;
