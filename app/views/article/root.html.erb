@@ -3,7 +3,13 @@
 </div>
 
 <% @articles.each do |article| %>
-  <p>
-    <a href="/article/<%= article.id %>"><%= article.title %></a>
-  </p>
+  <div style="padding-bottom:11px;">
+    <p>
+      <a href="/article/<%= article.id %>"><%= article.title %></a>
+    </p>
+    <p>
+      <a href="/article/<%= article.id %>?standard=true"><%= article.title %>
+      (Standard version)</a>
+    </p>
+  </div>
 <% end %>
