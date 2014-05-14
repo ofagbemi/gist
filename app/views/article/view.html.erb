@@ -118,7 +118,7 @@
             section.find('.short').addClass('current').show();
           } else return;
           
-          $('.section .adjust .down-arrow').removeClass('inactive');
+          $(this).parents('.adjust').find('.down-arrow').removeClass('inactive');
           current.removeClass('current').hide();
       });
       
@@ -135,7 +135,7 @@
             section.find('.long').addClass('current').show();
           } else return;
           
-          $('.section .adjust .up-arrow').removeClass('inactive');
+          $(this).parents('.adjust').find('.up-arrow').removeClass('inactive');
           current.removeClass('current').hide();
       });
   });
