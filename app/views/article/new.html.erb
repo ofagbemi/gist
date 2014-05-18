@@ -4,45 +4,77 @@
 <div class="upper">
   <div class="entry">
     <div class="label">Title</div>
+    <div class="caption">The article's title, e.g. "U.S. Climate Has Already Changed, Study Finds, Citing Heat and Floods"</div>
     <input type="text" name="title">
   </div>
   <div class="entry">
     <div class="label">Subtitle</div>
+    <div class="caption">The article's subheading. Feel free to leave this blank.</div>
     <input type="text" name="subtitle">
   </div>
   <div class="entry">
     <div class="label">Author</div>
+    <div class="caption">The first and last name of the article's author</div>
     <input type="text" name="author">
   </div>
-  <div class="entry">
-    <div class="label">Image URL</div>
+  <div class="entry" style="border-top:solid 1px rgba(0,0,0,0.15);padding-top:22px;margin-top:28px;">
+    <div class="label">Primary Image URL</div>
+    <div class="caption">The article's primary image. This will be displayed above the article.</div>
     <input type="text" name="main_image_url">
   </div>
   <div class="entry">
     <div class="label">Caption</div>
+    <div class="caption">This is the caption for the primary image, e.g. "California Chrome edges Ride On Curlin to win the Preakness Stakes."</div>
     <textarea class="caption" name="main_caption"></textarea>
   </div>
   <div class="entry">
     <div class="label">Attribution</div>
+    <div class="caption">This is the attribution for the primary image, e.g. "Matt Roth for The New York Times"</div>
     <textarea class="attribution" name="main_attribution"></textarea>
   </div>
 </div>
 <div class="section">
   <% 3.times do |current|%>
-  <div class="entry">
-    <h2>
+  <div class="entry head">
     <% case current
        when 0 %>
-       short
+       <h2>short</h2>
+       <div class="caption">
+         <p>
+           The short version of a section should state the main idea in one sentence,
+           or two, if absolutely necessary.
+         </p>
+      </div>
     <% when 1 %>
-       medium
+       <h2>medium</h2>
+       <div class="caption">
+         <p>
+           The medium version of a section should be a compact, complete summary of the
+           entire section. It should convey only the details that you deem <em>most</em>
+           important.
+         </p>
+        </div>
     <% when 2 %>
-       long
+       <h2>long</h2>
+       <div class="caption">
+         <p>
+           The long version of a section is the section in its unedited form. Just
+           copy and paste or re-type it here as is.
+         </p>
+      </div>
     <% end %>
-    </h2>
+  </div>
+  <% end %>
+  
+  <div class="clear"></div>
+  
+  <% 3.times do |current|%>
+  <div class="entry body">
     <textarea class="entry-textarea" size="<%= current %>"></textarea>
   </div>
   <% end %>
+  
+  
   <div class="clear"></div>
 </div>
 
@@ -62,8 +94,8 @@
   
     section_html = $($('.section')[0]).clone(false);
   
-  
     CKEDITOR.config.width = window.innerWidth/3.6 + 'px';
+    $('.section .entry').width(CKEDITOR.config.width);
     // replace textareas with CKEditors
     var t = $('.entry-textarea');
     for(var i=0;i<t.length;i++) {
@@ -99,6 +131,7 @@
         for(var i=0;i<textareas.length;i++) {
           CKEDITOR.replace(textareas[i]);
         }
+        $('.section .entry').width(CKEDITOR.config.width );
     });
     
     /* ------------------

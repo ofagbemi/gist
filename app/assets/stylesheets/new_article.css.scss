@@ -4,9 +4,21 @@
 
 .upper .entry .label {
   font-family: "Helvetica Neue", sans-serif;
-  font-weight: 200;
+  font-weight: normal;
   font-size: 14px;
   text-transform: uppercase;
+}
+
+.entry .caption {
+  font-family: "Baskerville";
+  font-weight: light;
+  color: #6a6a6a;
+  font-style: italic;
+  margin: 4px 2px;
+}
+
+.entry .caption em {
+  text-decoration: underline;
 }
 
 .upper .entry input[type="text"] {
@@ -40,6 +52,11 @@
   font-family: "Helvetica Neue", sans-serif;
   font-weight: 200;
   text-transform: uppercase;
+}
+
+.section .entry .caption p {
+  display: inline-block;
+  margin: 0 0 14px 0;
 }
 
 .entry textarea {
