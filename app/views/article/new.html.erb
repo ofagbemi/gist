@@ -183,7 +183,7 @@
       
       for(var key in data) {
         if(!data[key] || $.trim(data[key]) == '') {
-          if(key == "main_caption") return;
+          if(key == "subtitle") return;
           alert('You left the ' + key.replace('_', ' ') + ' field blank!');
           return;
         }
