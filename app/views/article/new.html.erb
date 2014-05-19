@@ -183,7 +183,10 @@
       
       for(var key in data) {
         if(!data[key] || $.trim(data[key]) == '') {
-          if(key == "subtitle") return;
+          if(key == "subtitle") {
+            data[key] = '';
+            continue;
+          }
           alert('You left the ' + key.replace('_', ' ') + ' field blank!');
           return;
         }
