@@ -5,6 +5,7 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  border: none;
 }
 
 a:hover {
@@ -35,10 +36,10 @@ header.main {
   position: fixed;
   top: 0px;
   height: 47px;
-  box-shadow: 0px 2px 4px rgba(0,0,0,0.04);
+  /* box-shadow: 0px 2px 4px rgba(0,0,0,0.04); */
   background: #fff;
   text-align: center;
-  border-bottom: solid 1px rgba(0,0,0,0.15);
+  border-bottom: solid 1px rgba(0,0,0,0.09);
 }
 
 header.main h1, header.main h3 {
@@ -73,6 +74,77 @@ header.main .left-side .button {
   font-weight: bold;
   color: black;
   margin-left: 18px;
+}
+
+.recommended-articles {
+  width: 100%;
+  height: 80px;
+  background: white;
+  
+  position: absolute;
+  top: 47px;
+  left: 0;
+  border-bottom: solid 1px rgba(0,0,0,0.08);
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.08);
+  
+  box-sizing: border-box;
+  padding: 10px 0;
+  
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.recommended-articles::-webkit-scrollbar {
+  display: none;
+}
+
+.recommended-article-link:hover {
+  text-decoration: none;
+}
+
+.recommended-article-link:hover .title {
+  text-decoration: underline;
+}
+
+.recommended-articles .recommended-article {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 11px;
+  min-width: 200px;
+  border-right: solid 1px rgba(0,0,0,0.1);
+}
+
+.recommended-articles .recommended-article .window {
+  width: 60px;
+  height: 60px;
+  background-color: black;
+  float: left;
+  
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 25%;
+  margin-right: 11px;
+}
+
+.recommended-articles .recommended-article .body {
+  float: left;
+}
+
+.recommended-articles .recommended-article .body .author {
+  margin: 0;
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 10px;
+}
+
+.recommended-articles .recommended-article .body .title {
+  margin: 0;
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: 300;
+  font-size: 14px;
 }
 
 footer.main {
@@ -122,7 +194,7 @@ footer.main .copy-line .item:hover {
 }
 
 .content-wrap {
-  margin-top: 47px;
+  margin-top: 127px;
   padding: 24px 48px;
   box-sizing: border-box;
 }
