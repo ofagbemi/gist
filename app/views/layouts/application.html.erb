@@ -16,233 +16,55 @@
   <h1 class="title"><a href="/">Gist</a></h1>
 </header>
 
+<div class="recommended-articles">
+
+  <% @articles.each do |article| %>
+    <a class="recommended-article-link" href="<%= article_path(article) %>">
+      <div class="recommended-article">
+        <div class="window" style="background-image: url('<%= article.images[0].url %>')"></div>
+        <div class="body">
+          <h3 class="author"><%= article.author %></h3>
+          <h2 class="title"><%= article.title %></h2>
+        </div>
+      </div>
+    </a>
+  <% end %>
+  
+</div>
+
 <div class="content-wrap">
   <div class="content">
     <%= yield %>
   </div>
 </div>
 
-<footer class="main">
-  <div class="nav">
-    <div class="nav-list">
-      <div class="head">
-        News
-      </div>
-      <div class="item">
-        World
-      </div>
-      <div class="item">
-        U.S.
-      </div>
-      <div class="item">
-        Politics
-      </div>
-      <div class="item">
-        Business
-      </div>
-      <div class="item">
-        Technology
-      </div>
-      <div class="item">
-        Science
-      </div>
-      <div class="item">
-        Health
-      </div>
-      <div class="item">
-        Sports
-      </div>
-      <div class="item">
-        Education
-      </div>
-    </div>
-  
-    <div class="nav-list">
-      <div class="head">
-        Opinion
-      </div>
-      <div class="item">
-        Today's Opinion
-      </div>
-      <div class="item">
-        Op-Ed Columnists
-      </div>
-      <div class="item">
-        Editorials
-      </div>
-      <div class="item">
-        Contributing Writers
-      </div>
-      <div class="item">
-        Op-Ed Contributors
-      </div>
-      <div class="item">
-        Opinionator
-      </div>
-      <div class="item">
-        Letters
-      </div>
-      <div class="item">
-        Sunday Review
-      </div>
-      <div class="item">
-        Taking Note
-      </div>
-      <div class="item">
-        Room For Debate
-      </div>
-      <div class="item">
-        Public Editor
-      </div>
-    </div>
-  
-    <div class="nav-list">
-      <div class="head">
-        Arts
-      </div>
-      <div class="item">
-        Today's Arts
-      </div>
-      <div class="item">
-        Art & Design
-      </div>
-      <div class="item">
-        Books
-      </div>
-      <div class="item">
-        Dance
-      </div>
-      <div class="item">
-        Movies
-      </div>
-      <div class="item">
-        Music
-      </div>
-      <div class="item">
-        Television
-      </div>
-      <div class="item">
-        Theater
-      </div>
-      <div class="item">
-        Video Games
-      </div>
-      <div class="item">
-        Video: Arts
-      </div>
-    </div>
-  
-    <div class="nav-list">
-      <div class="head">
-        Living
-      </div>
-      <div class="item">
-        Automobiles
-      </div>
-      <div class="item">
-        Crosswords
-      </div>
-      <div class="item">
-        Dining & Wine
-      </div>
-      <div class="item">
-        Education
-      </div>
-      <div class="item">
-        Fashion & Style
-      </div>
-      <div class="item">
-        Health
-      </div>
-      <div class="item">
-        Home & Garden
-      </div>
-      <div class="item">
-        Jobs
-      </div>
-      <div class="item">
-        Magazine
-      </div>
-      <div class="item">
-        Real Estate
-      </div>
-      <div class="item">
-        Travel
-      </div>
-    </div>
-  
-    <div class="nav-list">
-      <div class="head">
-        Listings+
-      </div>
-      <div class="item">
-        Classifieds
-      </div>
-      <div class="item">
-        Tools & Services
-      </div>
-      <div class="item">
-        Gist Topics
-      </div>
-      <div class="item">
-        TV Listings
-      </div>
-      <div class="item">
-        Blogs
-      </div>
-      <div class="item">
-        Cartoons
-      </div>
-      <div class="item">
-        Multimedia
-      </div>
-      <div class="item">
-        Photography
-      </div>
-      <div class="item">
-        Video
-      </div>
-      <div class="item">
-        My Account
-      </div>
-    </div>
-    <div class="clear"></div>
-  </div>
+<%= render(:partial => "layouts/footer") %>
 
 
-  <div class="copy-line">
-    <div class="item">
-      © 2014 Gist Co.
-    </div>
-    <div class="item">
-      Site Map
-    </div>
-    <div class="item">
-      Privacy
-    </div>
-    <div class="item">
-      Advertise
-    </div>
-    <div class="item">
-      Terms of Service
-    </div>
-    <div class="item">
-      Jobs
-    </div>
-    <div class="item">
-      RSS
-    </div>
-    <div class="item">
-      Help
-    </div>
-    <div class="item">
-      Contact Us
-    </div>
-    <div class="item">
-      Feedback
-    </div>
-  </div>
-</footer>
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    $(document).scroll(function() {
+      if($(document).scrollTop() > $('.recommended-articles').height()) {
+        $('header.main').css({
+          'box-shadow': '0px 2px 4px rgba(0,0,0,0.08)'
+        });
+    
+        $('.recommended-articles').css({
+          'box-shadow': 'none'
+        });
+      } else {
+        $('header.main').css({
+          'box-shadow': 'none'
+        });
+    
+        $('.recommended-articles').css({
+          'box-shadow': '0px 2px 4px rgba(0,0,0,0.08)'
+        });
+      }
+    });
+  });
+</script>
 
 </body>
 </html>

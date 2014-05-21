@@ -1,9 +1,10 @@
-class ArticleController < ApplicationController
-  def root
+class ArticlesController < ApplicationController
+  def index
     @articles = Article.find(:all)
   end
 
   def new
+    @articles = []
   end
   
   # Public: Handler for url to post new articles to
@@ -33,15 +34,17 @@ class ArticleController < ApplicationController
     end
     render :json => {
       status: "ok",
-      redirect: "/article/#{article.id}"
+      redirect: article_path(article)
     }
   end
   
-  def view
+  def show
     begin
       @article = Article.find params[:id]
     rescue ActiveRecord::RecordNotFound
       raise_404
+      return
     end
+    @articles = Article.where('id not in (?)', [params[:id]]);
   end
 end

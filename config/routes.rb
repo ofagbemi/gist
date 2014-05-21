@@ -1,9 +1,7 @@
 Gist::Application.routes.draw do
-  get '/' => 'article#root'
-  get '/article/new' => 'article#new'
-  get '/article/:id' => 'article#view'
-  
-  post '/article/new/create' => 'article#create'
+
+  root "articles#index"
+  resources :articles, :only => [:index, :new, :create, :show]
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
