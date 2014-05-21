@@ -16,21 +16,6 @@
   <h1 class="title"><a href="/">Gist</a></h1>
 </header>
 
-<div class="recommended-articles">
-
-  <% @articles.each do |article| %>
-    <a class="recommended-article-link" href="<%= article_path(article) %>">
-      <div class="recommended-article">
-        <div class="window" style="background-image: url('<%= article.images[0].url %>')"></div>
-        <div class="body">
-          <h3 class="author"><%= article.author %></h3>
-          <h2 class="title"><%= article.title %></h2>
-        </div>
-      </div>
-    </a>
-  <% end %>
-  
-</div>
 
 <div class="content-wrap">
   <div class="content">
