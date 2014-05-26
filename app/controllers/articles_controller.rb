@@ -39,6 +39,12 @@ class ArticlesController < ApplicationController
   end
   
   def show
+    if session[:session_id].nil?
+      flash.alert = "Please log in to continue";
+      redirect_to '/'
+      return
+    end
+    
     begin
       @article = Article.find params[:id]
     rescue ActiveRecord::RecordNotFound

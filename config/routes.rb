@@ -3,6 +3,10 @@ Gist::Application.routes.draw do
   root "articles#index"
   resources :articles, :only => [:index, :new, :create, :show]
   
+  get 'login' => 'data#start_session'
+  get 'logout' => 'data#end_session'
+  post 'data' => 'data#store'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

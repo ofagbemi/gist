@@ -150,9 +150,9 @@
           function(index) {
             var section = {
               'order': index,
-              'short': CKEDITOR.instances['editor' + editor].getData(), // $(this).find('textarea[size="0"]').val(),
-              'medium': CKEDITOR.instances['editor' + (editor + 1)].getData(), // $(this).find('textarea[size="1"]').val(),
-              'long': CKEDITOR.instances['editor' + (editor + 2)].getData(), // $(this).find('textarea[size="2"]').val()
+              'short': CKEDITOR.instances['editor' + editor].getData(),
+              'medium': CKEDITOR.instances['editor' + (editor + 1)].getData(),
+              'long': CKEDITOR.instances['editor' + (editor + 2)].getData()
             }
             
             editor += 3;

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140519205000) do
+ActiveRecord::Schema.define(version: 20140526113449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,21 @@ ActiveRecord::Schema.define(version: 20140519205000) do
     t.string   "title"
     t.text     "subtitle"
     t.string   "author"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "articles_test_sessions", id: false, force: true do |t|
+    t.string   "article_id"
+    t.string   "test_session_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "clicks", force: true do |t|
+    t.string   "click_type"
+    t.string   "section_id"
+    t.string   "test_session_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,6 +56,21 @@ ActiveRecord::Schema.define(version: 20140519205000) do
     t.text     "medium"
     t.text     "long"
     t.integer  "order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sessions", force: true do |t|
+    t.string   "session_id", null: false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
+
+  create_table "test_sessions", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end

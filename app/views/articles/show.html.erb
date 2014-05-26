@@ -1,4 +1,5 @@
 <%= render(:partial => "shared/recommended_articles", :locals => {:articles => @articles}) %>
+
 <div class="wrap">
   <div class="ad rect"></div>
   <article>
@@ -14,7 +15,7 @@
     <div class="side">
       <div style="margin-bottom: 94px;
              background-image:
-               url('<%= image_url("ads/square/" + rand(1).to_s + ".png"); %>');"
+               url('<%= image_url("ads/square/#{rand(2).to_s}.png"); %>');"
             class="ad square"></div>
       <div class="ad up rect"></div>
     </div>
@@ -137,6 +138,43 @@
           
           $(this).parents('.adjust').find('.up-arrow').removeClass('inactive');
           current.removeClass('current').hide();
+      });
+      
+      
+      // data collection stuff
+      function sendData(data) {
+        console.log('sending data');
+        $.ajax({
+          url: '/data',
+          data: data,
+          type: 'POST',
+          success: function(response) {
+            console.log(response);
+          }
+        });
+      }
+      
+      // w/e
+      sendData({
+        'article_id': <%= @article.id %>
+      });
+      
+      $('.section .adjust .up-arrow').click(
+        function(e) {
+          e.preventDefault();
+          sendData({
+            'click_type': 'shrink',
+            'section_id': $(this).attr('section')
+          });
+      });
+      
+      $('.section .adjust .down-arrow').click(
+        function(e) {
+          e.preventDefault();
+          sendData({
+            'click_type': 'expand',
+            'section_id': $(this).attr('section')
+          });
       });
   });
 </script>
