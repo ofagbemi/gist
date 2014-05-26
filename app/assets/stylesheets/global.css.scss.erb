@@ -105,6 +105,7 @@ header.main .right-side .button:hover {
   
   box-sizing: border-box;
   padding: 10px 0;
+  margin: 0;
   
   overflow-x: scroll;
   overflow-y: hidden;
@@ -113,6 +114,14 @@ header.main .right-side .button:hover {
 
 .recommended-articles::-webkit-scrollbar {
   display: none;
+}
+
+.recommended-articles-item {
+  display: inline-block;
+}
+
+.recommended-article-link {
+  display: inline-block;
 }
 
 .recommended-article-link:hover {
@@ -146,6 +155,7 @@ header.main .right-side .button:hover {
 .recommended-articles .recommended-article .body {
   float: left;
   max-width: 240px;
+  white-space: normal;
 }
 
 .recommended-articles .recommended-article .body .author {

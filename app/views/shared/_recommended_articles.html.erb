@@ -1,16 +1,18 @@
-<div class="recommended-articles">
+<ul class="recommended-articles">
   <% articles.each do |article| %>
-    <a class="recommended-article-link" href="<%= article_path(article) %>">
-      <div class="recommended-article">
-        <div class="window" style="background-image: url('<%= article.images[0].url %>')"></div>
-        <div class="body">
-          <h3 class="author"><%= article.author %></h3>
-          <h2 class="title"><%= article.title %></h2>
+    <li class="recommended-articles-item">
+      <a class="recommended-article-link" href="<%= article_path(article) %>">
+        <div class="recommended-article">
+          <div class="window" style="background-image: url('<%= article.images[0].url %>')"></div>
+          <div class="body">
+            <h3 class="author"><%= article.author %></h3>
+            <h2 class="title"><%= article.title %></h2>
+          </div>
         </div>
-      </div>
-    </a>
+      </a>
+    </li>
   <% end %>
-</div>
+</ul>
 
 <script type="text/javascript">
   $(document).ready(function() {
