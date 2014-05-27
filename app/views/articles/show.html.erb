@@ -161,7 +161,9 @@
       
       $('.section .adjust .up-arrow').click(
         function(e) {
-          e.preventDefault();
+          if($(this).hasClass('inactive')) {
+            return;
+          }
           sendData({
             'click_type': 'shrink',
             'section_id': $(this).attr('section')
@@ -170,7 +172,9 @@
       
       $('.section .adjust .down-arrow').click(
         function(e) {
-          e.preventDefault();
+          if($(this).hasClass('inactive')) {
+            return;
+          }
           sendData({
             'click_type': 'expand',
             'section_id': $(this).attr('section')
