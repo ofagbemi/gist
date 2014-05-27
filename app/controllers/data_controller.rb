@@ -15,9 +15,6 @@ class DataController < ApplicationController
     if params[:article_id]
       test_session = TestSession.find_by_id session[:session_id]
       test_session.articles << Article.find_by_id(params[:article_id])
-      
-      puts test_session
-      
       test_session.save
     else
       click = Click.new(click_params(params))
