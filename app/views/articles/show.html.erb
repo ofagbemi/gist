@@ -1,7 +1,12 @@
 <%= render(:partial => "shared/recommended_articles", :locals => {:articles => @articles}) %>
 
 <div class="wrap">
-  <div class="ad rect"></div>
+  <div class="centered">
+    <div style="
+           background-image:
+             url('<%= image_url("ads/rect_s/#{rand(1).to_s}.png"); %>');"
+         class="ad side rect"></div>
+  </div>
   <article>
     <div class="category">News</div>
     <div class="header">

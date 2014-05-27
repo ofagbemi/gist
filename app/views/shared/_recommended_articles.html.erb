@@ -16,10 +16,23 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
+    var maxHeight = 0;
+    $('.recommended-articles-item').each(
+      function() {
+        if($(this).height() > maxHeight) {
+          maxHeight = $(this).height();
+        }
+        console.log(maxHeight);
+    });
+    
+    $('.recommended-articles').css({
+      height: maxHeight + 'px'
+    });
+  
     $(document).scroll(function() {
       if($(document).scrollTop() > $('.recommended-articles').height()) {
         $('header.main').css({
-          'box-shadow': '0px 2px 4px rgba(0,0,0,0.08)'
+          'box-shadow': '0px 2px 4px rgba(148, 148, 148, 0.08)'
         });
     
         $('.recommended-articles').css({'box-shadow': 'none'});
@@ -27,7 +40,7 @@
         $('header.main').css({'box-shadow': 'none'});
     
         $('.recommended-articles').css({
-          'box-shadow': '0px 2px 4px rgba(0,0,0,0.08)'
+          'box-shadow': '0px 2px 4px rgba(148, 148, 148, 0.08)'
         });
       }
     });
