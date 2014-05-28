@@ -39,7 +39,7 @@
 
       <div class="words" length="<%= params[:standard]? 'long' : params[:l] %>">
         <% @article.sections.each do |section| %>
-          <div class="section <%= section.id %> <% if params[:standard] %> <%= 'standard' %><% end %>">
+          <div section="<%= section.id %>" class="section <%= section.id %> <% if params[:standard] %> <%= 'standard' %><% end %>">
             <div class="main">
               <div class="length short">
                 <%= section.short.html_safe %>
@@ -162,6 +162,7 @@
           $.data(this, 'scrollTimer', setTimeout(function() {
               sendData({
                 'click_type': 'scroll',
+                'section_id': $('.section')[0].getAttribute('section'),
                 'click_value': $(document).scrollTop() + 'px ' + window.innerHeight + 'px'
               });
           }, 250));
