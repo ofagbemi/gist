@@ -124,6 +124,11 @@
             section.find('.short').addClass('current').show();
           } else return;
           
+          sendData({
+            'click_type': 'shrink',
+            'section_id': $(this).attr('section')
+          });
+          
           $(this).parents('.adjust').find('.down-arrow').removeClass('inactive');
           current.removeClass('current').hide();
       });
@@ -141,12 +146,17 @@
             section.find('.long').addClass('current').show();
           } else return;
           
+          sendData({
+            'click_type': 'expand',
+            'section_id': $(this).attr('section')
+          });
+          
           $(this).parents('.adjust').find('.up-arrow').removeClass('inactive');
           current.removeClass('current').hide();
       });
       
       
-      // data collection stuff
+      // send data to /data handler
       function sendData(data) {
         console.log('sending data');
         $.ajax({
@@ -159,31 +169,9 @@
         });
       }
       
-      // w/e
+      // do this at the end, w/e
       sendData({
         'article_id': <%= @article.id %>
-      });
-      
-      $('.section .adjust .up-arrow').click(
-        function(e) {
-          if($(this).hasClass('inactive')) {
-            return;
-          }
-          sendData({
-            'click_type': 'shrink',
-            'section_id': $(this).attr('section')
-          });
-      });
-      
-      $('.section .adjust .down-arrow').click(
-        function(e) {
-          if($(this).hasClass('inactive')) {
-            return;
-          }
-          sendData({
-            'click_type': 'expand',
-            'section_id': $(this).attr('section')
-          });
       });
   });
 </script>
