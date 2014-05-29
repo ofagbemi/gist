@@ -27,6 +27,6 @@ class DataController < ApplicationController
   
   private
   def click_params params
-    params.permit(:section_id, :click_type, :click_value)
+    params.permit(:section_id, :click_type, :click_value, :date_time)
   end
 end

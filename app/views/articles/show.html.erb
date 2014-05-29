@@ -126,7 +126,8 @@
           
           sendData({
             'click_type': 'shrink',
-            'section_id': $(this).attr('section')
+            'section_id': $(this).attr('section'),
+            'date_time': (new Date()).toString()
           });
           
           $(this).parents('.adjust').find('.down-arrow').removeClass('inactive');
@@ -148,7 +149,8 @@
           
           sendData({
             'click_type': 'expand',
-            'section_id': $(this).attr('section')
+            'section_id': $(this).attr('section'),
+            'date_time': (new Date()).toString()
           });
           
           $(this).parents('.adjust').find('.up-arrow').removeClass('inactive');
@@ -163,7 +165,8 @@
               sendData({
                 'click_type': 'scroll',
                 'section_id': $('.section')[0].getAttribute('section'),
-                'click_value': $(document).scrollTop() + 'px ' + window.innerHeight + 'px'
+                'click_value': $(document).scrollTop() + 'px ' + window.innerHeight + 'px',
+                'date_time': (new Date()).toString()
               });
           }, 250));
       });
