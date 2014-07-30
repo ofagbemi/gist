@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
       format.any {head :not_found}
     end
   end
+  
+  def paper
+    redirect_to '/paper.pdf'
+  end
 end

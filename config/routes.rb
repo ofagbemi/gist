@@ -3,6 +3,7 @@ Gist::Application.routes.draw do
   root "articles#index"
   resources :articles, :only => [:index, :new, :create, :show]
   
+  get 'paper', to: 'application#paper'
   get 'login' => 'data#start_session'
   get 'logout' => 'data#end_session'
   post 'data' => 'data#store'
