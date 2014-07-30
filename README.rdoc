@@ -1,3 +1,5 @@
 == GIST
 
 Code for the Gist research project
+
+Read the paper here: http://gist-app.herokuapp.com/paper
